@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>loginAndRegistration</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        {% if messages %}
+            <ul style="list-style-type: none">
+                {% for message in messages %} 
+                    {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+                        <li> <h3 style="color:red; display:inline-block">{{ message }}</h3> </li>  
+                    {% else %}
+                        <li> <h3 style="color:green; display:inline-block">{{ message }}</h3> </li> 
+                    {% endif %}    
+                {% endfor %}
+            </ul>    
+        {% endif %}
+    
+        <h1>Register</h1>
+        <form action="/register" method="post">
+            {% csrf_token %}
+                <label> Name</label><br>
+                <input type="text" name="name" id="name"><br>
+                <label> Email</label><br>
+                <input type="text" name="email" id="email"><br>
+                <label> Password</label><br>
+                <input type="password" name="password" id="password"><br>
+                <label>Password Confirmation</label><br>
+                <input type="password" name="password_conf" id="password_conf"><br>
+                <label for="dob">Date of Birth</label><br>
+                <input type="date" name="dob" id="dob">
+                <button>Submit</button><br><br>
+        </form>
+        <h1>Login</h1>
+        <form action='/login' method='post'>
+            {% csrf_token %}
+                <label> Email</label><br>
+                <input type="email" name="email" id="email"><br>
+                <label> Password</label><br>
+                <input type="password" name="password" id="password"> <br>
+                <button>Submit</button>
+        </form>
+    </div>
+</body>
+</html>
